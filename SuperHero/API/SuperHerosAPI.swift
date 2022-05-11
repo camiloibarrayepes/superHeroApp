@@ -28,32 +28,35 @@ class SuperHerosMapper {
         self.networkClient = networkClient
     }
     
-    func getSuperHeros(completion: @escaping (Result<SuperHero, Error>) -> Void) {
-        networkClient.request(SuperHerosAPI.get) { (response: Result<SuperHeroAPIReponse, AFError>) in
+    func getSuperHeros(completion: @escaping (Result<[SuperHero], Error>) -> Void) {
+        networkClient.request(SuperHerosAPI.get) { [weak self] (response: Result<[SuperHeroAPIReponse], AFError>) in
+            guard let self = self else { return }
+            
             switch response {
             case let .success(apiResponse):
-                completion(.success(self.map(response: apiResponse)))
+                completion(.success(apiResponse.map(self.map)))
             case let .failure(error):
                 completion(.failure(error))
             }
         }
     }
     
-    func map(response: SuperHeroAPIReponse) -> SuperHero {
-        SuperHero(id: response.id,
-                  name: response.name,
-                  slug: response.slug,
-                  powerstats: Powerstats(intelligence: response.powerstats.intelligence,
-                                         strength: response.powerstats.strength,
-                                         speed: response.powerstats.speed,
-                                         durability: response.powerstats.durability,
-                                         power: response.powerstats.power,
-                                         combat: response.powerstats.combat),
-                  appearance: Appearance(gender: response.appearance.gender,
-                                         race: response.appearance.race,
-                                         height: response.appearance.height,
-                                         weight: response.appearance.weight),
-                  image: response.images.md)
+    func map(apiReponse: SuperHeroAPIReponse) -> SuperHero {
+        SuperHero(id: apiReponse.id,
+                  name: apiReponse.name,
+                  slug: apiReponse.slug,
+                  powerstats: Powerstats(intelligence: apiReponse.powerstats.intelligence,
+                                         strength: apiReponse.powerstats.strength,
+                                         speed: apiReponse.powerstats.speed,
+                                         durability: apiReponse.powerstats.durability,
+                                         power: apiReponse.powerstats.power,
+                                         combat: apiReponse.powerstats.combat),
+                  appearance: Appearance(gender: apiReponse.appearance.gender,
+                                         race: apiReponse.appearance.race,
+                                         height: apiReponse.appearance.height,
+                                         weight: apiReponse.appearance.weight),
+                  image: apiReponse.images.md,
+                  publisher: apiReponse.biography.publisher)
     }
     
     

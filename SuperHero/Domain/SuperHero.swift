@@ -13,6 +13,7 @@ struct SuperHero {
     let powerstats: Powerstats
     let appearance: Appearance
     let image: String
+    let publisher: String
 }
 
 struct Powerstats {
@@ -30,4 +31,3 @@ struct Appearance {
     let height: [String]
     let weight: [String]
 }
-

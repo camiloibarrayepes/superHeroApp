@@ -7,6 +7,6 @@
 import Foundation
 
 protocol SuperHerosDataProtocol {
-    func getSuperHeros(completion: @escaping (Result<SuperHero, Error>) -> Void)
+    func getSuperHeros(completion: @escaping (Result<[SuperHero], Error>) -> Void)
 }
 
