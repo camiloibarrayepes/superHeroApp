@@ -9,4 +9,5 @@ import Foundation
 protocol SuperHeroesView: AnyObject {
     func display(_ superHeroes: [SuperHeroViewModel])
     func display(_ error: ErrorViewModel)
+    func display(_ loading: LoadingViewModel)
 }

@@ -7,9 +7,10 @@
 import Foundation
 
 struct SuperHeroViewModel {
-    let image: Data
+    let image: String
     let name: String
     let publisher: String
     let height: String
     let weigth: String
 }
+

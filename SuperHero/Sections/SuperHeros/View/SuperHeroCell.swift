@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class SuperHeroCell: UICollectionViewCell {
 
@@ -16,23 +17,33 @@ class SuperHeroCell: UICollectionViewCell {
     @IBOutlet weak var itemHeight: UILabel!
     @IBOutlet weak var itemWeigth: UILabel!
     @IBOutlet weak var removeButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    var onRemoveCallback: ((_ view: SuperHeroCell) -> Void)?
     
     var item: SuperHeroViewModel? {
         didSet {
-            itemImage.image = UIImage(data: item?.image ?? Data())
             itemName.text = item?.name
             itemPublisher.text = item?.publisher
             itemHeight.text = item?.height
             itemWeigth.text = item?.weigth
+            
+            guard let url = URL(string: item?.image ?? "") else {
+                return
+            }
+            activityIndicator.startAnimating()
+            itemImage.af.setImage(withURL: url, completion:  { [weak self] _ in
+                self?.activityIndicator.stopAnimating()
+            })
         }
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        itemImage.image = nil
     }
     
     @IBAction func onRemoveTap(_ sender: Any) {
-        
+        onRemoveCallback?(self)
     }
 }

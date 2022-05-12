@@ -28,6 +28,8 @@
 		27744244282C1FDC00833D39 /* SuperHeroesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27744243282C1FDC00833D39 /* SuperHeroesView.swift */; };
 		27744247282C9B1F00833D39 /* SuperHeroesMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27744246282C9B1F00833D39 /* SuperHeroesMapper.swift */; };
 		27744249282C9BA600833D39 /* SuperHeroesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27744248282C9BA600833D39 /* SuperHeroesLoader.swift */; };
+		27744250282CB95800833D39 /* OrderCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2774424F282CB95800833D39 /* OrderCase.swift */; };
+		27744252282CB96900833D39 /* LoadingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27744251282CB96900833D39 /* LoadingViewModel.swift */; };
 		6FCF75FE38CE99D3A18532F6 /* Pods_SuperHero.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 113076B2A15F3ED085957533 /* Pods_SuperHero.framework */; };
 		AD1C437C6542D42045BD9033 /* Pods_SuperHeroTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A2D29C763824F8A986A1D82 /* Pods_SuperHeroTests.framework */; };
 /* End PBXBuildFile section */
@@ -68,6 +70,8 @@
 		27744243282C1FDC00833D39 /* SuperHeroesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperHeroesView.swift; sourceTree = "<group>"; };
 		27744246282C9B1F00833D39 /* SuperHeroesMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperHeroesMapper.swift; sourceTree = "<group>"; };
 		27744248282C9BA600833D39 /* SuperHeroesLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperHeroesLoader.swift; sourceTree = "<group>"; };
+		2774424F282CB95800833D39 /* OrderCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCase.swift; sourceTree = "<group>"; };
+		27744251282CB96900833D39 /* LoadingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewModel.swift; sourceTree = "<group>"; };
 		2A2896CE5506BEB6D4E03263 /* Pods-SuperHero.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperHero.debug.xcconfig"; path = "Target Support Files/Pods-SuperHero/Pods-SuperHero.debug.xcconfig"; sourceTree = "<group>"; };
 		66C8A42F264B8B2E472D01C0 /* Pods-SuperHeroTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperHeroTests.release.xcconfig"; path = "Target Support Files/Pods-SuperHeroTests/Pods-SuperHeroTests.release.xcconfig"; sourceTree = "<group>"; };
 		7A2D29C763824F8A986A1D82 /* Pods_SuperHeroTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SuperHeroTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -211,6 +215,8 @@
 			children = (
 				2774423F282C1FC000833D39 /* SuperHeroViewModel.swift */,
 				27744241282C1FCC00833D39 /* ErrorViewModel.swift */,
+				27744251282CB96900833D39 /* LoadingViewModel.swift */,
+				2774424F282CB95800833D39 /* OrderCase.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -405,6 +411,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27744250282CB95800833D39 /* OrderCase.swift in Sources */,
 				2750D44C282AC466008D0670 /* SuperHero.swift in Sources */,
 				27744236282C19DB00833D39 /* SuperHeroesPresenter.swift in Sources */,
 				27744244282C1FDC00833D39 /* SuperHeroesView.swift in Sources */,
@@ -420,6 +427,7 @@
 				2750D450282AC617008D0670 /* SuperHeroCell.swift in Sources */,
 				27744247282C9B1F00833D39 /* SuperHeroesMapper.swift in Sources */,
 				27455C3E2829F998009AAF43 /* SceneDelegate.swift in Sources */,
+				27744252282CB96900833D39 /* LoadingViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -598,7 +606,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -625,7 +633,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

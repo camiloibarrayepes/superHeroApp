@@ -5,3 +5,11 @@
 
 "SUPER_HEROES_TITLE" = "Super Heroes";
 "CONNECTION_ERROR" = "Up's something went wrong";
+"ORDER_BY" = "Sort by";
+"HIGHER_INTELLIGENCE" = "Higher Intelligence";
+"LOWER_INTELLIGENCE" = "Lower Intelligence";
+"HIGHER_STRENGHT" = "Higher Strenght";
+"LOWER_STRENGHT" = "Lower Strenght";
+"HIGHER_SPEED" = "Higher Speed";
+"LOWER_SPEED" = "Lower Speed";
+"CANCEL" = "Cancel";
