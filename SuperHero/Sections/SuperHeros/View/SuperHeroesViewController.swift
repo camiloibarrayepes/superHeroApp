@@ -6,14 +6,14 @@
 
 import UIKit
 
-class SuperHerosViewController: UIViewController {
+class SuperHeroesViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var errorView: UIView!
     @IBOutlet weak var errorLabel: UILabel!
     
-    private var superHeros: [SuperHeroViewModel] = []
-    var presenter: SuperHerosInputPresenter!
+    private var superHeroes: [SuperHeroViewModel] = []
+    var presenter: SuperHeroesInputPresenter!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,23 +22,25 @@ class SuperHerosViewController: UIViewController {
         collectionView.delegate = self
         collectionView.register(UINib(nibName: "SuperHeroCell", bundle: nil), forCellWithReuseIdentifier: "SuperHeroCell")
         
-        presenter.fetchSuperHeros()
+        presenter.fetchSuperHeroes()
+        
+        title = Localizable.superHeroesTitle
     }
 }
 
-extension SuperHerosViewController: UICollectionViewDataSource {
+extension SuperHeroesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return superHeros.count
+        return superHeroes.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SuperHeroCell", for: indexPath) as! SuperHeroCell
-        cell.item = superHeros[indexPath.row]
+        cell.item = superHeroes[indexPath.row]
         return cell
     }
 }
 
-extension SuperHerosViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension SuperHeroesViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let w = (collectionView.frame.width / 2) - 24
@@ -46,9 +48,9 @@ extension SuperHerosViewController: UICollectionViewDelegate, UICollectionViewDe
     }
 }
 
-extension SuperHerosViewController: SuperHerosView {
-    func display(_ superHeros: [SuperHeroViewModel]) {
-        self.superHeros = superHeros
+extension SuperHeroesViewController: SuperHeroesView {
+    func display(_ superHeroes: [SuperHeroViewModel]) {
+        self.superHeroes = superHeroes
         collectionView.reloadData()
         errorView.isHidden = true
         collectionView.isHidden = false

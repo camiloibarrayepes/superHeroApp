@@ -1,47 +1,14 @@
 //
-// 10/05/22
-// HeroAPI.swift File
+// 11/05/22
+// SuperHeroesMapper.swift File
 //
 
-import Alamofire
 
-enum SuperHerosAPI: URLRequestConvertible {
+import Foundation
 
-    static let baseURL = URL(string: "https://bitbucket.org/consultr")!
-    
-    case get
-    
-    func asURLRequest() throws -> URLRequest {
-        switch self {
-        case .get:
-            let fullURL = SuperHerosAPI.baseURL.appendingPathComponent("/superhero-json-api/raw/4b787c39fcbfd8d069339de94bf8f3a6bda69f3e/superheros.json")
-            return URLRequest(url: fullURL)
-        }
-    }
-}
+class SuperHeroesMapper {
 
-class SuperHerosMapper {
-    
-    let networkClient: NetworkClient
-    
-    init(networkClient: NetworkClient) {
-        self.networkClient = networkClient
-    }
-    
-    func getSuperHeros(completion: @escaping (Result<[SuperHero], Error>) -> Void) {
-        networkClient.request(SuperHerosAPI.get) { [weak self] (response: Result<[SuperHeroAPIReponse], AFError>) in
-            guard let self = self else { return }
-            
-            switch response {
-            case let .success(apiResponse):
-                completion(.success(apiResponse.map(self.map)))
-            case let .failure(error):
-                completion(.failure(error))
-            }
-        }
-    }
-    
-    func map(apiReponse: SuperHeroAPIReponse) -> SuperHero {
+    static func map(apiReponse: SuperHeroAPIReponse) -> SuperHero {
         SuperHero(id: apiReponse.id,
                   name: apiReponse.name,
                   slug: apiReponse.slug,
@@ -52,13 +19,12 @@ class SuperHerosMapper {
                                          power: apiReponse.powerstats.power,
                                          combat: apiReponse.powerstats.combat),
                   appearance: Appearance(gender: apiReponse.appearance.gender,
-                                         race: apiReponse.appearance.race,
+                                         race: apiReponse.appearance.race ?? "",
                                          height: apiReponse.appearance.height,
                                          weight: apiReponse.appearance.weight),
                   image: apiReponse.images.md,
-                  publisher: apiReponse.biography.publisher)
+                  publisher: apiReponse.biography.publisher ?? "")
     }
-    
     
     // MARK: - SuperHeroAPIReponse
     struct SuperHeroAPIReponse: Codable {
@@ -75,7 +41,7 @@ class SuperHerosMapper {
         // MARK: - Appearance
         struct Appearance: Codable {
             let gender: String
-            let race: String
+            let race: String?
             let height: [String]
             let weight: [String]
             let eyeColor: String
@@ -89,7 +55,7 @@ class SuperHerosMapper {
             let aliases: [String]
             let placeOfBirth: String
             let firstAppearance: String
-            let publisher: String
+            let publisher: String?
             let alignment: String
         }
 

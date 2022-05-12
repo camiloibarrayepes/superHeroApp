@@ -17,13 +17,13 @@ class SuperHeroCell: UICollectionViewCell {
     @IBOutlet weak var itemWeigth: UILabel!
     @IBOutlet weak var removeButton: UIButton!
     
-    var item: SuperHeroViewModel {
+    var item: SuperHeroViewModel? {
         didSet {
-            itemImage.image = UIImage(data: item.image)
-            itemName.text = item.name
-            itemPublisher.text = item.publisher
-            itemHeight.text = item.height
-            itemWeigth.text = item.weigth
+            itemImage.image = UIImage(data: item?.image ?? Data())
+            itemName.text = item?.name
+            itemPublisher.text = item?.publisher
+            itemHeight.text = item?.height
+            itemWeigth.text = item?.weigth
         }
     }
     

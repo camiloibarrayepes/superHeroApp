@@ -24,4 +24,12 @@ extension Localizable {
             comment: "Error message displayed when we can't load the resource")
     }
     
+    static var superHeroesTitle: String {
+        NSLocalizedString(
+            "SUPER_HEROES_TITLE",
+            tableName: table,
+            bundle: bundle,
+            comment: "Title")
+    }
+    
 }

@@ -1,32 +1,32 @@
 //
 // 11/05/22
-// SuperHerosPresenter.swift File
+// SuperHeroesPresenter.swift File
 //
 
 import Foundation
 
-protocol SuperHerosInputPresenter {
-    func fetchSuperHeros()
+protocol SuperHeroesInputPresenter {
+    func fetchSuperHeroes()
 }
 
-class SuperHerosPresenter {
-    private weak var view: SuperHerosView?
-    private let dataProvider: SuperHerosDataProtocol
+class SuperHeroesPresenter {
+    private weak var view: SuperHeroesView?
+    private let dataProvider: SuperHeroesLoaderProtocol
     
-    init(view: SuperHerosView, dataProvider: SuperHerosDataProtocol) {
+    init(view: SuperHeroesView, dataProvider: SuperHeroesLoaderProtocol) {
         self.view = view
         self.dataProvider = dataProvider
     }
 }
 
-extension SuperHerosPresenter: SuperHerosInputPresenter {
-    func fetchSuperHeros() {
-        dataProvider.getSuperHeros { [weak self] result in
+extension SuperHeroesPresenter: SuperHeroesInputPresenter {
+    func fetchSuperHeroes() {
+        dataProvider.getSuperHeroes { [weak self] result in
             guard let self = self else { return }
             
             switch result {
-            case let .success(superHeros):
-                let viewModels = superHeros.map { superHero in
+            case let .success(superHeroes):
+                let viewModels = superHeroes.map { superHero in
                     SuperHeroViewModel(image: Data(),
                                        name: superHero.name,
                                        publisher: superHero.publisher,
